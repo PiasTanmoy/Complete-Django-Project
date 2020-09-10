@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for p in products %}
+    <p>
+        {{ p.name }}
+        <a href="{{ p.id }}">Details</a>
+    </p>
+{% endfor %}
+
+<a href="{% url 'upload_product' %}">Upload</a>
+
+</body>
+</html>

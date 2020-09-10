@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {{ search.name }} <br>
+    {{ search.id }} <br>
+    {{ search.price }} <br>
+    {{ search.category }} <br>
+    {{ search.description }} <br>
+    <img src="{{ search.image.url }}" height="200" width="200"> <br>
+    <a href="{{ search.file.url }}">View</a> <br>
+
+    <script>
+        document.write('<a href=" ' + document.referrer + ' ">All Products</a>');
+    </script>
+    <br>
+
+    <a href="javascript:history.back()">Go Back</a>
+
+</body>
+</html>
