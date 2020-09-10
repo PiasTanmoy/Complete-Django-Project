@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-{% for p in products %}
-    <p>
-        {{ p.name }}
-        <a href="{{ p.id }}">Details</a>
-    </p>
-{% endfor %}
+{% block content %}
 
-<a href="{% url 'upload_product' %}">Upload</a>
+    {% for p in products %}
+        <p>
+            {{ p.name }}
+            <a href="{{ p.id }}">Details</a>
+        </p>
+    {% endfor %}
 
-</body>
-</html>
+    <h3> User count: {{ u_c }}   </h3>
+    <h3> Product count: {{ p_c }}   </h3>
+
+{% endblock content %}
