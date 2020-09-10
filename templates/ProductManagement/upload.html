@@ -1,18 +1,27 @@
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
 
-    <input type="submit">
-</form>
 
-<a href="{% url 'products_list' %}">Product List</a>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+
+        <input type="submit">
+    </form>
+    
+    <a href="{% url 'products_list' %}">Product List</a>
 
 
 
