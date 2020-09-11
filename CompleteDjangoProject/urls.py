@@ -27,7 +27,9 @@ urlpatterns = [
     path('products/<int:product_id>', product_views.showDetails, name='detail_view'),
     path('upload/', product_views.uploadProducts, name='upload_product'),
     path('signup/', user_views.register, name='register'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('profile/', user_views.show_profile, name='show_profile'),
+    path('createprofile/', user_views.create_profile, name='create_profile')
 ]
 
 if settings.DEBUG == True:
