@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from .models import Product
 from .forms import ProductForm
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def showProducts(request):
@@ -24,6 +26,7 @@ def showDetails(request, product_id):
 
     return render(request, 'ProductManagement/detail_product_view.html', context)
 
+@login_required
 def uploadProducts(request):
     form = ProductForm()
 
