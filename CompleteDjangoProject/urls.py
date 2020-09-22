@@ -27,10 +27,23 @@ urlpatterns = [
     path('products/<int:product_id>', product_views.showDetails, name='detail_view'),
     path('upload/', product_views.uploadProducts, name='upload_product'),
     path('signup/', user_views.register, name='register'),
+
     path('accounts/', include('django.contrib.auth.urls')),
+
     path('profile/', user_views.show_profile, name='show_profile'),
     path('createprofile/', user_views.create_profile, name='create_profile')
 ]
 
 if settings.DEBUG == True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+'''
+accounts/login/ [name='login']
+accounts/logout/ [name='logout']
+accounts/password_change/ [name='password_change']
+accounts/password_change/done/ [name='password_change_done']
+accounts/password_reset/ [name='password_reset']
+accounts/password_reset/done/ [name='password_reset_done']
+accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
+accounts/reset/done/ [name='password_reset_complete']
+'''

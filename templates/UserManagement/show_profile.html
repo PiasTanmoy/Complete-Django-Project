@@ -1,5 +1,11 @@
-{% extends 'base.html'%}
+{% extends 'base2.html'%}
 
 {% block content %}
-    {{ profile }}
+    <table>
+        <tr><td>{{ profile.id }}</td></tr>
+        <tr><td>{{ profile.user.username }}</td></tr>
+        <tr><td>{{ profile.contact_no }}</td></tr>
+        <tr><td><img src="{{ profile.pro_pic.url }}" height="200" width="200"></td></tr>
+       <tr><td> <a href="{{ profile.cv.url }}">View CV</a></td></tr>
+    </table>
 {% endblock content %}

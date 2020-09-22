@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'UserManagement.apps.UsermanagementConfig'
 ]
 
+#pip install django-crispy-forms
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -129,5 +131,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'products_list'
+
 LOGOUT_REDIRECT_URL = 'products_list'
 
