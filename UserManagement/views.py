@@ -89,6 +89,7 @@ def send_email(request):
 
         code = id_generator()
         v_code = code
+        request.session['v_code'] = code
 
         message += request.POST['body']
         message += '\n Activation code: ' + code
@@ -109,7 +110,7 @@ def send_email(request):
                 'message': user_message
             }
 
-            return redirect('')
+            return redirect('verification')
         else:
             user_message = 'Failed! Try again please!'
 
@@ -118,19 +119,28 @@ def send_email(request):
     }
     return render(request, 'UserManagement/send_email.html', context)
 
+
+
 @login_required
 def verify_email(request):
     message = ''
+
     if request.method == "POST":
         code = request.POST['code']
+        print(code, request.session['v_code'])
+        message = 'Not matched!'
 
-        if v_code == code:
+        if request.session['v_code'] == code:
             message = "Successful! Your account if activated now!"
             profile = Profile.objects.get(user = request.user)
             profile.status = "True"
             profile.save()
+            context = {
+                'message': message
+            }
+            return render(request, 'UserManagement/success.html', context)
 
     context = {
         'message': message
     }
-    return render(request, 'UserManagement/success.html', context)
+    return render(request, 'UserManagement/email_verification_code.html', context)

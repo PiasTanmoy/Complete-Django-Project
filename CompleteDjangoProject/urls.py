@@ -34,7 +34,7 @@ urlpatterns = [
     path('createprofile/', user_views.create_profile, name='create_profile'),
 
     path('email/', user_views.send_email, name='email'),
-    path('verfication/', user_views.verify_email, name='verfication')
+    path('verification/', user_views.verify_email, name='verification')
 ]
 
 if settings.DEBUG == True:
