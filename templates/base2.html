@@ -27,7 +27,9 @@
             <a class="nav-link"  href="{% url 'show_profile' %}">My Profile</a> |
             <a class="nav-link"  href="{% url 'logout' %}">Logout</a> |
             <a class="nav-link"  href="{% url 'password_change' %}">change password</a>  |
+            <a class="nav-link"  href="{% url 'email' %}">Verify Email</a>  |
              <a class="nav-link"  href="{% url 'show_profile' %}">{{ user.username }}</a>
+
         {% else %}
             <a class="nav-link"  href="{% url 'register' %}">Register</a> |
             <a class="nav-link"  href="{% url 'login' %}">Login</a>

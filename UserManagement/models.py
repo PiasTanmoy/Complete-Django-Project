@@ -9,7 +9,11 @@ class Profile(models.Model):
     pro_pic = models.ImageField(upload_to='users/pro_pics', blank=True, null=True, default='users/pro_pics/default.jpg')
     portfolio_url = models.URLField(blank=True, null=True)
     cv = models.FileField(upload_to='users/cv', blank=True, null=True)
+
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+
+    status = models.CharField(max_length=10, blank=True, null=True, default='False')
 
     def __str__(self):
         return self.user.username
+

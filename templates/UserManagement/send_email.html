@@ -1,0 +1,25 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+    {{ message }}
+    <h3>Send Email</h3>
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>To: </label>
+        <input type="text" name="recipient">
+
+        <label>Subject: </label>
+        <input type="text" name="subject">
+
+        <label>Body </label>
+        <textarea name= "body" rows="4" cols="50">
+
+        </textarea>
+
+        <input type="submit">
+
+    </form>
+
+{% endblock content %}

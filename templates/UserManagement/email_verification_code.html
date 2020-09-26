@@ -1,0 +1,17 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+    {{ message }}
+    <h3>Verification</h3>
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Verification Code: </label>
+        <input type="text" name="code">
+
+        <input type="submit">
+
+    </form>
+
+{% endblock content %}

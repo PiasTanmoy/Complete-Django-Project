@@ -3,6 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 from .models import Profile
+from django.core.mail import send_mail
+import random
+import string
+
+v_code = '123'
 
 # Create your views here.
 
@@ -52,7 +57,9 @@ def create_profile(request):
 @login_required
 def show_profile(request):
     try:
+
         profile = Profile.objects.get(user=request.user)
+
     except Profile.DoesNotExist:
         profile = "Please complete your profile to view"
 
@@ -61,3 +68,69 @@ def show_profile(request):
     }
     
     return render(request, 'UserManagement/show_profile.html', context)
+
+
+def id_generator(size=16, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+@login_required
+def send_email(request):
+    recipient_list = []
+    subject = ''
+    message = ''
+    status = Profile.objects.get(user=request.user).status
+    user_message = '' + status
+
+    if request.method == 'POST':
+
+        recipient_list.append( request.POST['recipient'] )
+        subject = request.POST['subject']
+
+        code = id_generator()
+        v_code = code
+
+        message += request.POST['body']
+        message += '\n Activation code: ' + code
+
+
+        status = send_mail(
+            subject = subject,
+            message = message,
+            from_email = 'contact.formulabd71@gmail.com',
+            recipient_list = recipient_list,
+            fail_silently = True
+        )
+
+        if status == 1:
+
+            user_message = 'Email sent successfully. Please enter the verification code.'
+            context = {
+                'message': user_message
+            }
+
+            return redirect('')
+        else:
+            user_message = 'Failed! Try again please!'
+
+    context = {
+        'message' : user_message
+    }
+    return render(request, 'UserManagement/send_email.html', context)
+
+@login_required
+def verify_email(request):
+    message = ''
+    if request.method == "POST":
+        code = request.POST['code']
+
+        if v_code == code:
+            message = "Successful! Your account if activated now!"
+            profile = Profile.objects.get(user = request.user)
+            profile.status = "True"
+            profile.save()
+
+    context = {
+        'message': message
+    }
+    return render(request, 'UserManagement/success.html', context)
