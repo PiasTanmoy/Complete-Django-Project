@@ -44,7 +44,6 @@ def create_profile(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-
             return redirect('products_list')
 
     context = {
@@ -57,9 +56,7 @@ def create_profile(request):
 @login_required
 def show_profile(request):
     try:
-
         profile = Profile.objects.get(user=request.user)
-
     except Profile.DoesNotExist:
         profile = "Please complete your profile to view"
 
@@ -144,3 +141,13 @@ def verify_email(request):
         'message': message
     }
     return render(request, 'UserManagement/email_verification_code.html', context)
+
+
+from .forms import DateForm
+def time_date(request):
+    form = DateForm()
+    context = {
+        'form' : form
+    }
+
+    return render(request, 'UserManagement/time_date.html', context)

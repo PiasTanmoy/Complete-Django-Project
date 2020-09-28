@@ -1,0 +1,143 @@
+{% extends 'base2.html' %}
+
+{% block content  %}
+
+
+
+    {% if order_status == True %}
+
+        <h1>Pending Orders</h1>
+        {% for order in orders %}
+            {% if order.status == 'Pending' %}
+               <div class="card bg-light mb-2`" >
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ order.product.image.url }}" class="card-img" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ search.name }}</h5>
+                        <p class="card-text">
+                            {{ order.product.name }} <br>
+                            {{ order.product.id }} <br>
+                            {{ order.product.price }} <br>
+                            {{ order.product.category }} <br>
+                            {{ order.product.description }} <br>
+                            <h3>{{ order.status }} </h3>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+        {% for order in orders %}
+            {% if order.status == 'Approved' %}
+                <h1>Approved Orders</h1>
+               <div class="card bg-light mb-2`" >
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ order.product.image.url }}" class="card-img" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ search.name }}</h5>
+                        <p class="card-text">
+                            {{ order.product.name }} <br>
+                            {{ order.product.id }} <br>
+                            {{ order.product.price }} <br>
+                            {{ order.product.category }} <br>
+                            {{ order.product.description }} <br>
+                            <h3>{{ order.status }} </h3>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for order in orders %}
+            {% if order.status == 'Delivering' %}
+                <h1>Delivering Orders</h1>
+               <div class="card bg-light mb-2`" >
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ order.product.image.url }}" class="card-img" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ search.name }}</h5>
+                        <p class="card-text">
+                            {{ order.product.name }} <br>
+                            {{ order.product.id }} <br>
+                            {{ order.product.price }} <br>
+                            {{ order.product.category }} <br>
+                            {{ order.product.description }} <br>
+                            <h3>{{ order.status }} </h3>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for order in orders %}
+            {% if order.status == 'Completed' %}
+                <h1>Completed Orders</h1>
+               <div class="card bg-light mb-2`" >
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{ order.product.image.url }}" class="card-img" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ search.name }}</h5>
+                        <p class="card-text">
+                            {{ order.product.name }} <br>
+                            {{ order.product.id }} <br>
+                            {{ order.product.price }} <br>
+                            {{ order.product.category }} <br>
+                            {{ order.product.description }} <br>
+                            <h3>{{ order.status }} </h3>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    <h2>Total: {{ total }}</h2>
+    {% else %}
+        <h2>Total: 0.00</h2>
+    {% endif %}
+
+
+
+
+
+{% endblock content %}
