@@ -24,7 +24,9 @@ class Category(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ManyToManyField(Product)
+
+    product = models.ManyToManyField(Product) # can be blank or null by default
+
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now=True)
 
@@ -33,16 +35,20 @@ class Cart(models.Model):
     
 
 class Order(models.Model):
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now=True)
+
     STATUS_CHOICES = (
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
         ('Delivering', 'Delivering'),
         ('Completed', 'Completed')
     )
+
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Pending')
 
     def __str__(self):

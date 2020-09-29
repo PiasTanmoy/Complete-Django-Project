@@ -3,12 +3,16 @@
 {% block content  %}
 
 
-
     {% if order_status == True %}
 
         <h1>Pending Orders</h1>
+
         {% for order in orders %}
+
+
             {% if order.status == 'Pending' %}
+
+
                <div class="card bg-light mb-2`" >
                   <div class="row no-gutters">
                     <div class="col-md-4">
@@ -34,12 +38,16 @@
                     </div>
                   </div>
                 </div>
+
+
             {% endif %}
 
         {% endfor %}
 
         {% for order in orders %}
+
             {% if order.status == 'Approved' %}
+
                 <h1>Approved Orders</h1>
                <div class="card bg-light mb-2`" >
                   <div class="row no-gutters">
@@ -70,7 +78,9 @@
         {% endfor %}
 
         {% for order in orders %}
+
             {% if order.status == 'Delivering' %}
+
                 <h1>Delivering Orders</h1>
                <div class="card bg-light mb-2`" >
                   <div class="row no-gutters">
@@ -135,8 +145,6 @@
     {% else %}
         <h2>Total: 0.00</h2>
     {% endif %}
-
-
 
 
 

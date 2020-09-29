@@ -2,6 +2,8 @@
 
 {% block content  %}
 
+    {% if does_exists == True %}
+
         <div class="card bg-light mb-2`" >
           <div class="row no-gutters">
             <div class="col-md-4">
@@ -19,14 +21,17 @@
                     {{ search.description }} <br>
                 </p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-{#  updatecart/product_id #}
-                  <a href="{% url 'update-cart' search.id  %}" >Add to Cart</a>
+
+                  <a href="{% url 'update-cart' search.id %}" >Add to Cart</a>
 
               </div>
             </div>
           </div>
         </div>
 
+    {% else %}
+        <h1>No Product</h1>
+    {% endif %}
 
 
 

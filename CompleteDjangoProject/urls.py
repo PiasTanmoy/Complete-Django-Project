@@ -24,6 +24,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', product_views.showProducts, name='products_list'),
+
+
     path('products/<int:product_id>', product_views.showDetails, name='detail_view'),
 
 
@@ -44,10 +46,14 @@ urlpatterns = [
     path('datetime/', user_views.time_date),
 
     path('cart/', product_views.view_cart, name='cart'),
+
     path('updatecart/<int:product_id>', product_views.update_cart, name='update-cart'),
+
+
     path('deletefromcart/<int:product_id>', product_views.delete_from_cart, name='delete-from-cart'),
 
     path('myorders/', product_views.my_orders, name='my-orders'),
+
     path('orderproduct/<int:product_id>', product_views.make_order, name='order-product'),
 
 ]

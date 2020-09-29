@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 import random
 import string
 
+from ProductManagement.models import Cart
+
 v_code = '123'
 
 # Create your views here.
@@ -21,9 +23,14 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             # if valid then save to database
-            form.save()
+            user = form.save()
+
+            # create a new cart for new user
+            cart = Cart(user = user)
+            cart.save()
+
             # after a successful registration you can redirect to any page
-            return redirect('home')
+            return redirect('products_list')
 
     context={
         'form' : form
