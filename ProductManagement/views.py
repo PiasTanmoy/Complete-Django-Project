@@ -11,6 +11,9 @@ def showProducts(request):
 
     products = Product.objects.all()
 
+    if request.method == 'POST':
+        products = Product.objects.filter(name__icontains = request.POST['search'])
+
 
     user_count = User.objects.count()
     product_count = Product.objects.count()
@@ -166,9 +169,7 @@ def my_orders(request):
 @login_required
 def make_order(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-
     order = Order(user=request.user, product=product)
-
     order.save()
 
     cart = Cart.objects.get(user=request.user)
@@ -178,3 +179,23 @@ def make_order(request, product_id):
     #return HttpResponseRedirect(reverse('cart'))
     return redirect('cart')
 
+def test(request):
+
+    print(request.POST)
+
+    return redirect('products_list')
+
+
+def bkash_order(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    order = Order(user=request.user, product=product)
+    order.transaction_id = request.POST['transaction_id']
+    order.payment_options  = 'Bkash'
+    order.save()
+
+    cart = Cart.objects.get(user=request.user)
+    cart.product.remove(product)
+    cart.save()
+
+    #return HttpResponseRedirect(reverse('cart'))
+    return redirect('cart')

@@ -56,6 +56,8 @@ urlpatterns = [
 
     path('orderproduct/<int:product_id>', product_views.make_order, name='order-product'),
 
+    path('bkash/<int:product_id>', product_views.bkash_order, name='bkash-order-product')
+
 ]
 
 if settings.DEBUG == True:

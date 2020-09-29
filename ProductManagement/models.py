@@ -51,5 +51,15 @@ class Order(models.Model):
 
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Pending')
 
+    PAYMENT_CHOICES = (
+        ('Bkash', 'Bkash'),
+        ('Rocket', 'Rocket'),
+        ('Payment on delivery', 'Payment on delivery')
+    )
+    payment_options = models.CharField(max_length=50, choices=PAYMENT_CHOICES, default='Payment on delivery')
+    is_paid = models.BooleanField(default=False)
+
+    transaction_id = models.CharField(max_length=30, null =True, blank=True)
+
     def __str__(self):
         return self.user.username + "-" + self.product.name + "-" + self.status

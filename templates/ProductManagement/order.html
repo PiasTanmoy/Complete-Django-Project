@@ -11,9 +11,10 @@
 
 
             {% if order.status == 'Pending' %}
+                <br>
 
 
-               <div class="card bg-light mb-2`" >
+               <div class="card text-white bg-secondary mb-2`" >
                   <div class="row no-gutters">
                     <div class="col-md-4">
                       <img src="{{ order.product.image.url }}" class="card-img" alt="...">
@@ -44,12 +45,17 @@
 
         {% endfor %}
 
+        <br>
+        <hr>
+        <h1>Approved Orders</h1>
         {% for order in orders %}
 
-            {% if order.status == 'Approved' %}
 
-                <h1>Approved Orders</h1>
-               <div class="card bg-light mb-2`" >
+            {% if order.status == 'Approved' %}
+                <br>
+
+
+               <div class="card text-white bg-primary mb-2`" >
                   <div class="row no-gutters">
                     <div class="col-md-4">
                       <img src="{{ order.product.image.url }}" class="card-img" alt="...">
@@ -77,12 +83,17 @@
             {% endif %}
         {% endfor %}
 
+        <br>
+        <hr>
+
+        <h1>Delivering Orders</h1>
         {% for order in orders %}
 
             {% if order.status == 'Delivering' %}
+                <br>
 
-                <h1>Delivering Orders</h1>
-               <div class="card bg-light mb-2`" >
+
+               <div class="card text-white bg-success mb-2`" >
                   <div class="row no-gutters">
                     <div class="col-md-4">
                       <img src="{{ order.product.image.url }}" class="card-img" alt="...">
@@ -110,10 +121,15 @@
             {% endif %}
         {% endfor %}
 
+        <br>
+        <hr>
+
+        <h1>Completed Orders</h1>
         {% for order in orders %}
             {% if order.status == 'Completed' %}
-                <h1>Completed Orders</h1>
-               <div class="card bg-light mb-2`" >
+                <br>
+
+               <div class="card text-white bg-info mb-2`" >
                   <div class="row no-gutters">
                     <div class="col-md-4">
                       <img src="{{ order.product.image.url }}" class="card-img" alt="...">
