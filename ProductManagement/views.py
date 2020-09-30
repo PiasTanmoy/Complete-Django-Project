@@ -11,9 +11,12 @@ def showProducts(request):
 
     products = Product.objects.all()
 
+
     if request.method == 'POST':
         products = Product.objects.filter(name__icontains = request.POST['search'])
+        category = Product.objects.filter(category__icontains = request.POST['search'])
 
+        products = products | category # C = A U B set operation
 
     user_count = User.objects.count()
     product_count = Product.objects.count()
@@ -110,6 +113,7 @@ def view_cart(request):
 def update_cart(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
+
     cart = get_object_or_404(Cart, user=request.user)
 
     cart.product.add(product)
