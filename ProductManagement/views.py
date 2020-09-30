@@ -33,11 +33,9 @@ def showProducts(request):
 def showDetails(request, product_id):
 
     searched_product = get_object_or_404(Product, id=product_id)
-
     context = {
         'search': searched_product
     }
-
     return render(request, 'ProductManagement/detail_product_view.html', context)
 
 
@@ -113,7 +111,6 @@ def view_cart(request):
 def update_cart(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
-
     cart = get_object_or_404(Cart, user=request.user)
 
     cart.product.add(product)

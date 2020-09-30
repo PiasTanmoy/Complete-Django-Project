@@ -17,11 +17,6 @@ class Product(models.Model):
         return self.name
 
 
-class Category(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
-
-
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
