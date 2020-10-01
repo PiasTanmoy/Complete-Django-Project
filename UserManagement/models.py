@@ -16,3 +16,15 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Chat(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
+    receiver = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
+
+    message = models.TextField(max_length=2000)
+    image = models.ImageField(upload_to='users/chat/images', blank=True, null=True)
+    file = models.FileField(upload_to='users/chat/files', blank=True, null=True)
+
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __str__(self):
+        return self.sender.username + " : " + self.receiver.username

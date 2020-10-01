@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm
-from .models import Profile
+from .forms import ProfileForm, ChatForm
+from .models import Profile, Chat
 from django.core.mail import send_mail
 import random
 import string
@@ -170,12 +170,24 @@ def verify_email(request):
     }
     return render(request, 'UserManagement/email_verification_code.html', context)
 
+@login_required
+def send_message(request):
+    form = ChatForm()
 
-from .forms import DateForm
-def time_date(request):
-    form = DateForm()
+    all_messages = Chat.objects.filter(receiver=request.user)
+
+    if request.method == "POST":
+        form = ChatForm(request.POST, request.FILES)
+
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.sender = request.user
+            instance.save()
+
+
     context = {
-        'form' : form
+        'form' : form,
+        'all_messages': all_messages
     }
 
-    return render(request, 'UserManagement/time_date.html', context)
+    return render(request, 'UserManagement/Chat.html', context)

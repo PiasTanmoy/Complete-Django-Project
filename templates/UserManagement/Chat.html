@@ -1,0 +1,35 @@
+{% extends 'base2.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit">
+    </form>
+    <br><br><br><br>
+    <h3>My Messages</h3>
+    <div class="container">
+
+        {% for message in all_messages %}
+            Sender: {{ message.sender.username }}<br>
+            Message: {{ message.message }}<br>
+
+            {% if message.image  %}
+            <img src="{{ message.image.url }}" width="200" height="200"><br>
+            {% endif %}
+
+            {% if message.file  %}
+                <a href="{{ message.file.url }}" >File</a><br>
+            {% endif %}
+
+            {{ message.timestamp }}
+
+            <br><br>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock content %}

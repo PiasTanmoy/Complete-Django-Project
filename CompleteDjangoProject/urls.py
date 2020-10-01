@@ -43,9 +43,6 @@ urlpatterns = [
     path('email/', user_views.send_email, name='email'),
     path('verification/', user_views.verify_email, name='verification'),
 
-
-    path('datetime/', user_views.time_date),
-
     path('cart/', product_views.view_cart, name='cart'),
 
     path('updatecart/<int:product_id>', product_views.update_cart, name='update-cart'),
@@ -60,6 +57,8 @@ urlpatterns = [
     path('bkash/<int:product_id>', product_views.bkash_order, name='bkash-order-product'),
 
     path('review/<int:product_id>', product_views.review_after_complete, name='review'),
+
+    path('chat/', user_views.send_message, name='chat')
 
 ]
 
