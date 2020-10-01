@@ -45,10 +45,17 @@ def create_profile(request):
 
     try:
         profile = Profile.objects.get(user=request.user)
+        form = ProfileForm(initial={'contact_no': profile.contact_no,
+                                    'mobile_no' : profile.mobile_no,
+                                    'pro_pic' : profile.pro_pic,
+                                    'portfolio_url': profile.portfolio_url,
+                                    'cv' : profile.cv,
+
+                                    })
     except profile.DoesNotExist:
         profile = None
+        form = ProfileForm()
 
-    form = ProfileForm()
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
