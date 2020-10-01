@@ -1,0 +1,52 @@
+{% extends 'base2.html' %}
+{% load crispy_forms_tags %}
+{% block content  %}
+
+
+        <div class="card bg-light mb-2`" >
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{{ search.image.url }}" class="card-img" alt="...">
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ search.name }}</h5>
+                <p class="card-text">
+                    {{ search.name }} <br>
+                    {{ search.id }} <br>
+                    {{ search.price }} <br>
+                    {{ search.category }} <br>
+                    {{ search.description }} <br>
+                </p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+{#  updatecart/product_id #}
+                  <a href="{% url 'update-cart' search.id  %}" >Add to Cart</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <div class="container">
+        {% for review in search.reviews.all %}
+            User: {{ review.user.username }}<br>
+            Rating: {{ review.rating }} <br>
+            Comment: {{ review.comment }} <br><br><br>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        {% if already_reviewed == False %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button type="submit">Review</button>
+        </form>
+        {% else %}
+            <h2>You have already submitted a review</h2>
+        {% endif %}
+    </div>
+
+
+{% endblock content %}

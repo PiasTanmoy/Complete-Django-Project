@@ -57,7 +57,9 @@ urlpatterns = [
 
     path('orderproduct/<int:product_id>', product_views.make_order, name='order-product'),
 
-    path('bkash/<int:product_id>', product_views.bkash_order, name='bkash-order-product')
+    path('bkash/<int:product_id>', product_views.bkash_order, name='bkash-order-product'),
+
+    path('review/<int:product_id>', product_views.review_after_complete, name='review'),
 
 ]
 

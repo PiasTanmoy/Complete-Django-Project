@@ -216,3 +216,38 @@ def bkash_order(request, product_id):
 
     #return HttpResponseRedirect(reverse('cart'))
     return redirect('cart')
+
+@login_required
+def review_after_complete(request, product_id):
+
+    already_reviewed = False
+
+    searched_product = get_object_or_404(Product, id=product_id)
+
+    user_list = searched_product.reviews.filter(user=request.user)
+    print(user_list, len(user_list))
+    if len(user_list) != 0:
+        already_reviewed = True
+
+
+    form = ReviewForm()
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            searched_product.reviews.add(instance)
+            searched_product.save()
+
+            return redirect('my-orders')
+
+    context = {
+        'search': searched_product,
+        'form': form,
+        'already_reviewed': already_reviewed
+    }
+    return render(request, 'ProductManagement/detail_product_view_review.html', context)
