@@ -1,8 +1,6 @@
 {% extends 'base2.html' %}
-
+{% load crispy_forms_tags %}
 {% block content  %}
-
-
 
 
         <div class="card bg-light mb-2`" >
@@ -30,9 +28,21 @@
           </div>
         </div>
 
+    <div class="container">
+        {% for review in search.reviews.all %}
+            User: {{ review.user.username }}<br>
+            Rating: {{ review.rating }} <br>
+            Comment: {{ review.comment }} <br><br><br>
+        {% endfor %}
+    </div>
 
-
-
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input type="submit">
+        </form>
+    </div>
 
 
 {% endblock content %}

@@ -1,8 +1,8 @@
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import Product, Cart, Order
-from .forms import ProductForm
+from .models import Product, Cart, Order, Review
+from .forms import ProductForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -34,8 +34,23 @@ def showProducts(request):
 def showDetails(request, product_id):
 
     searched_product = get_object_or_404(Product, id=product_id)
+
+    form = ReviewForm()
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+
+            searched_product.reviews.add(instance)
+            searched_product.save()
+
     context = {
-        'search': searched_product
+        'search': searched_product,
+        'form': form
     }
     return render(request, 'ProductManagement/detail_product_view.html', context)
 

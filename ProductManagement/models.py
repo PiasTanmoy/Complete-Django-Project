@@ -3,6 +3,22 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+class Review(models.Model):
+    RATING_OPTIONS = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5')
+    )
+    rating = models.CharField(max_length=10, choices = RATING_OPTIONS, default='4')
+    comment = models.TextField(blank=True, null=True)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.rating
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -13,8 +29,12 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/images/', blank=True, default="products/images/default.jpg")
     file = models.FileField(upload_to='products/files/', blank=True, null=True, default='products/files/default.pdf')
 
+    reviews = models.ManyToManyField(Review)
+
     def __str__(self):
         return self.name
+
+
 
 
 class Cart(models.Model):

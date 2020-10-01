@@ -6,12 +6,11 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     contact_no = models.CharField(max_length=20)
     mobile_no = models.CharField(max_length=20)
-    pro_pic = models.ImageField(upload_to='users/pro_pics', blank=True, null=True, default='users/pro_pics/default.jpg')
+    pro_pic = models.ImageField(upload_to='users/pro_pics', blank=True, null=True)
     portfolio_url = models.URLField(blank=True, null=True)
     cv = models.FileField(upload_to='users/cv', blank=True, null=True)
 
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
-
     status = models.CharField(max_length=10, blank=True, null=True, default='False')
 
     def __str__(self):
