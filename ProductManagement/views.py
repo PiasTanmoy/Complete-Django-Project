@@ -15,8 +15,9 @@ def showProducts(request):
     if request.method == 'POST':
         products = Product.objects.filter(name__icontains = request.POST['search'])
         category = Product.objects.filter(category__icontains = request.POST['search'])
+        description  = Product.objects.filter(description__icontains = request.POST['search'])
 
-        products = products | category # C = A U B set operation
+        products = products | category | description # C = A U B set operation
 
     user_count = User.objects.count()
     product_count = Product.objects.count()

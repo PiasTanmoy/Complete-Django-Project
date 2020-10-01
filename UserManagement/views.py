@@ -42,6 +42,12 @@ def register(request):
 
 @login_required
 def create_profile(request):
+
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except profile.DoesNotExist:
+        profile = None
+
     form = ProfileForm()
 
     if request.method == "POST":
@@ -50,7 +56,16 @@ def create_profile(request):
         if form.is_valid:
             instance = form.save(commit=False)
             instance.user = request.user
-            instance.save()
+
+            #instance.save()
+
+            if profile == None:
+                instance.save()
+            else:
+                profile.contact_no = instance.contact_no
+                profile.pro_pic = instance.pro_pic
+                profile.save()
+
             return redirect('products_list')
 
     context = {
