@@ -11,6 +11,7 @@ class Profile(models.Model):
     cv = models.FileField(upload_to='users/cv', blank=True, null=True)
 
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+
     status = models.CharField(max_length=10, blank=True, null=True, default='False')
 
     def __str__(self):

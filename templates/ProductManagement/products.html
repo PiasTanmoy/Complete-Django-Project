@@ -49,6 +49,26 @@
     </div>
 
     <br><br>
+
+    <form method="POST" action="{% url 'products_list' %}">
+        {% csrf_token %}
+
+      <input  type="search" name="search" hidden value="Smartphone">
+
+      <button  type="submit">Smartphone</button>
+    </form>
+
+    <br>
+
+    <form method="POST" action="{% url 'products_list' %}">
+        {% csrf_token %}
+
+      <input  type="search" name="search" hidden value="Laptop">
+
+      <button  type="submit">Laptop</button>
+    </form>
+
+    <br><br>
     <h2>Products</h2>
 
     <div class="row row-cols-1 row-cols-md-3">

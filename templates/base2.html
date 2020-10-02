@@ -42,7 +42,9 @@
 
             <form method="POST" action="{% url 'products_list' %}">
                 {% csrf_token %}
+
               <input  type="search" name="search">
+
               <button  type="submit">Search</button>
             </form>
 
