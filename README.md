@@ -1,7 +1,7 @@
 # CompleteDjangoProject
 An ecomerece website for learning and teaching purposes
 
-![alt text](media\slider\nature2.jpg)
+<img src="media/slider/nature3.jpg">
 
 Django Project Guide
 A cheat sheet provided by your course teacher :D 
