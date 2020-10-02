@@ -43,15 +43,17 @@ def register(request):
 @login_required
 def create_profile(request):
 
-    try:
+
+    profile_list = Profile.objects.filter(user=request.user)
+
+    if len(profile_list) != 0:
         profile = Profile.objects.get(user=request.user)
         form = ProfileForm(initial={'contact_no': profile.contact_no,
-                                    'mobile_no' : profile.mobile_no,
+                                    'mobile_no': profile.mobile_no,
                                     'portfolio_url': profile.portfolio_url,
-                                    'cv' : profile.cv,
-
+                                    'cv': profile.cv,
                                     })
-    except profile.DoesNotExist:
+    else:
         profile = None
         form = ProfileForm()
 
