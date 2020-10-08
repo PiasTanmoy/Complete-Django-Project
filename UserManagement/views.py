@@ -193,3 +193,17 @@ def send_message(request):
     }
 
     return render(request, 'UserManagement/Chat.html', context)
+
+
+def save_profile_session(request):
+
+    if request.user.is_authenticated:
+        profile_list = Profile.objects.filter(user = request.user)
+
+        if( len(profile_list) != 0 ):
+            request.session['profile_pic'] = profile_list[0].pro_pic.url
+
+    return redirect('products_list')
+
+def abouts(request):
+    return render(request, 'UserManagement/about.html')

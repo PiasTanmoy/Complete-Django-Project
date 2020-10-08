@@ -1,6 +1,51 @@
 {% extends 'base2.html'%}
 
 {% block content %}
+      <div class="container my-5 py-5 z-depth-1">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 dark-grey-text text-center text-lg-left">
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+          <img src="{{ profile.pro_pic.url }}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+
+          <h3 class="font-weight-bold">{{ profile.user.username }}</h3>
+
+          <p class="font-weight-bold">{{ profile.contact_no }}</p>
+
+          <p class="text-muted">Lorem ipsum dolor,
+              sit amet consectetur adipisicing elit. Id quam sapiente
+            molestiae
+            numquam quas, voluptates omnis nulla
+              ea odio quia similique corrupti magnam, doloremque laborum.</p>
+
+          <a class="font-weight-bold" href="#" >Learn more<i class="fas fa-angle-right ml-2"></i></a>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+  </div>
+
     <table>
         <tr><td>{{ profile.id }}</td></tr>
         <tr><td>{{ profile.user.username }}</td></tr>

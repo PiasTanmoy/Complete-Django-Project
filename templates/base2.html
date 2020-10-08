@@ -49,9 +49,18 @@
               <button  type="submit">Search</button>
             </form>
 
+            <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+              aria-labelledby="navbarDropdownMenuLink-55">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+
+
         </div>
       </div>
     </nav>
+
 
 
 
@@ -64,46 +73,13 @@
         </div>
       <br><br>
 
-      <div class="container">
 
-          <!-- Scrollable modal -->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-              Launch static backdrop modal
-            </button>
+    {% include "base_design2.html" %}
+    {% include "base_design1.html" %}
 
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <br>
+      {% include "contact.html" %}
 
-            <script>
-                document.write('<a href=" ' + document.referrer + ' ">Go Back</a>');
-            </script>
-            <br>
-          <a href="javascript:history.back()">Go Back</a>
-
-      </div>
-
-
-
+    {% include "footer.html" %}
 
 
 

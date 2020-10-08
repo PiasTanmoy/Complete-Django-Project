@@ -2,6 +2,127 @@
 
 {% block content  %}
 
+    <div class="container my-5 py-3 z-depth-1 rounded">
+
+
+      <!--Section: Content-->
+      <section class="dark-grey-text">
+
+        <!-- Shopping Cart table -->
+        <div class="table-responsive">
+
+          <table class="table product-table mb-0">
+
+            <!-- Table head -->
+            <thead class="mdb-color lighten-5">
+              <tr>
+                <th></th>
+                <th class="font-weight-bold">
+                  <strong>Product</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>Color</strong>
+                </th>
+                <th></th>
+                <th class="font-weight-bold">
+                  <strong>Price</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>QTY</strong>
+                </th>
+                <th class="font-weight-bold">
+                  <strong>Amount</strong>
+                </th>
+
+                  <th class="font-weight-bold">
+                  <strong>Order Option 1</strong>
+                </th>
+
+                  <th class="font-weight-bold">
+                  <strong>Order Option 2</strong>
+                </th>
+
+                  <th class="font-weight-bold">
+                  <strong>Remove</strong>
+                </th>
+
+              </tr>
+            </thead>
+            <!-- /.Table head -->
+
+            <!-- Table body -->
+            <tbody>
+
+            {% for search in cart.product.all %}
+
+              <!-- First row -->
+              <tr>
+                <th scope="row">
+                  <img src="{{ search.image.url }}" height="200" width="200" alt="" class="img-fluid z-depth-0">
+                </th>
+                <td>
+                  <h5 class="mt-3">
+                    <strong>iPhone</strong>
+                  </h5>
+                  <p class="text-muted">Apple</p>
+                </td>
+                <td>White</td>
+                <td></td>
+                <td>$800</td>
+                <td>
+                  <input type="number" value="2" aria-label="Search" class="form-control" style="width: 100px">
+                </td>
+                <td class="font-weight-bold">
+                  <strong>$800</strong>
+                </td>
+                <td>
+
+                      <a href="{% url 'order-product' search.id %}" >
+                        <button type="button" class="btn btn-outline-primary">
+                            Payment on delivery
+                            </button>
+                      </a>
+
+                </td>
+              <td>
+                  <form action="{% url 'bkash-order-product' search.id %}" method="POST">
+                      {% csrf_token %}
+                      <input name="transaction_id" type="text" placeholder="Bkash transaction ID" required>
+                      <button type="submit" class="btn btn-primary">Order with Bkash</button>
+                  </form>
+
+                </td>
+
+              <td>
+
+                      <a href="{% url 'delete-from-cart' search.id %}" >
+                          <button type="button" class="btn btn-outline-primary">
+                              X
+                              </button>
+                      </a>
+
+                </td>
+
+
+              </tr>
+              <!-- /.First row -->
+
+            {% endfor %}
+
+            </tbody>
+            <!-- /.Table body -->
+
+          </table>
+
+        </div>
+        <!-- /.Shopping Cart table -->
+
+      </section>
+      <!--Section: Content-->
+
+
+    </div>
+
 
 
 
@@ -28,37 +149,12 @@
             </p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 
-              <h4>Option 1: <a href="{% url 'order-product' search.id %}" >Payment on delivery</a><br></h4>
+              <h4>Option 1: <a href="{% url 'order-product' search.id %}" >
+                  Payment on delivery</a><br></h4>
 
 
 
               <h4>Option 2:</h4>
-
-              <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Launch demo modal
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
               <form action="{% url 'bkash-order-product' search.id %}" method="POST">
                   {% csrf_token %}

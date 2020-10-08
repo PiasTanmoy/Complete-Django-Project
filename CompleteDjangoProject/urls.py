@@ -58,7 +58,11 @@ urlpatterns = [
 
     path('review/<int:product_id>', product_views.review_after_complete, name='review'),
 
-    path('chat/', user_views.send_message, name='chat')
+    path('chat/', user_views.send_message, name='chat'),
+
+    path('sessionprofile/', user_views.save_profile_session, name='session-profile'),
+    
+    path('abouts/', user_views.abouts, name='abouts')
 
 ]
 
